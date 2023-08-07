@@ -1,5 +1,6 @@
 import { Body, Controller, Post, Get } from "@nestjs/common";
 import { UserRepository } from "./user.repository";
+import { CreateUserDTO } from "./dto/CreateUser.dto";
 
 @Controller('/users')
 export class UserController{
@@ -9,7 +10,7 @@ export class UserController{
     }
 
     @Post()
-    async create(@Body() request){
+    async create(@Body() request:CreateUserDTO){
         console.log(request)
         this.userRepository.save(request)
         return this.userRepository.getUsers()
